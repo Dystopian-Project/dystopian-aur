@@ -1,0 +1,17 @@
+post_install() {
+	post_upgrade
+	usr/bin/pacrepo-cli remove dystopian
+	usr/bin/pacrepo-cli add dystopian https://github.com/dcx7c5/dystopian-aur/releases/download/repository
+}
+
+post_upgrade() {
+	usr/bin/pacman-key -a usr/share/dystopian-keyring/public.gpg
+	KEY=$(gpg --show-keys --keyid-format=long usr/share/dystopian-keyring/public.gpg | grep 'pub' | awk 'match($2,/[A-Z0-9]{16}/){print substr($2,RSTART,RLENGTH)}')
+	usr/bin/pacman-key --lsign-key ${KEY}
+}
+
+pre_remove() {
+	KEY=$(gpg --show-keys --keyid-format=long usr/share/dystopian-keyring/public.gpg | grep 'pub' | awk 'match($2,/[A-Z0-9]{16}/){print substr($2,RSTART,RLENGTH)}')
+	usr/bin/pacman-key -d ${KEY}
+	usr/bin/pacrepo-cli remove dystopian
+}

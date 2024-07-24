@@ -1,0 +1,8 @@
+[linux-dystopian]
+source = "git"
+git = "https://github.com/Dystopian-Projectx/linux-dystopian.git"
+use_max_tag = true
+prefix = "v"
+include_regex = "v.*-dystopian[0-9]+"
+from_pattern = "(.*)-(dystopian[0-9]+)"
+to_pattern = "\\1.\\2"

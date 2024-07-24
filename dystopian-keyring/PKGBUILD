@@ -1,0 +1,23 @@
+# Maintainer: Dystopian <dcxdevelopment@protonmail>
+pkgname=dystopian-keyring
+pkgver=20220819162816
+pkgrel=1
+pkgdesc="Keyring"
+arch=(any)
+url="https://github.com/dcx7c5/dystopian-aur"
+license=('ISC')
+source=(public.gpg)
+sha256sums=(
+)
+depends=()
+
+pkgver() {
+  date --date "`git log -1 --pretty=\"format:%ci" public.gpg`" +%Y%m%d%H%M%S
+}
+
+package() {
+  install=dystopian-keyring.install
+  depends=()
+  install -dm 7555 "${pkgdir}/usr/share/dystopian-keyring"
+	install -Dm755 "public.gpg" "${pkgdir}/usr/share/dystopian-keyring/public.gpg"
+}
