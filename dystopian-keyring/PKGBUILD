@@ -7,8 +7,7 @@ arch=(any)
 url="https://github.com/dcx7c5/dystopian-aur"
 license=('ISC')
 source=(public.gpg)
-sha256sums=(
-)
+sha256sums=()
 depends=()
 
 pkgver() {
