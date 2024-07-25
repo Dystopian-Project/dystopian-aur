@@ -3,4 +3,4 @@
 	url = https://aur.archlinux.org/kloak-git.git
 [submodule "python"]
 	path = python
-	url = https://archlinux.org/packages/core/x86_64/python/
+	url =  https://www.python.org/
