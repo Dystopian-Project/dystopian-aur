@@ -84,7 +84,7 @@ jobs:
         GPGKEY: ${{ needs.variables.outputs.enc-gpg }}
       with:
         dir: ${{ matrix.package }}
-        run: GPG_TTY=$(tty) makepkg -sr --sign -C -c --noconfirm --noprogressbar
+        run: makepkg -sr --sign -C -c --noconfirm --noprogressbar
     - name: Upload new package ${{ matrix.package }}
       uses: svenstaro/upload-release-action@v2
       with:
