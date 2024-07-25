@@ -1,7 +1,7 @@
 post_install() {
 	post_upgrade
 	usr/bin/pacrepo-cli remove dystopian-aur
-	usr/bin/pacrepo-cli add dystopian https://github.com/dcx7c5/dystopian-aur/releases/download/repository
+	usr/bin/pacrepo-cli add dystopian https://github.com/Dystopian-Project/dystopian-aur/releases/download/repository
 }
 
 post_upgrade() {
