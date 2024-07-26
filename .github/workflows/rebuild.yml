@@ -74,7 +74,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: recursive
+        submodules: false
         ref: main
     - name: Build ${{ matrix.package }}
       uses: ./.github/actions/archlinux
