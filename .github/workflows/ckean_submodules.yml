@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: | 
+          cd ${{ github.workspace }} && 
           git config --add submodule.python.active false || 
           git config --unset submodule.python.active 
 
