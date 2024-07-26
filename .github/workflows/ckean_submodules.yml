@@ -1,0 +1,13 @@
+name: Reset submodules
+
+permissions:
+  packages: write
+  contents: write
+
+
+jobs:
+  variables:
+    runs-on: ubuntu-latest
+    steps:
+      - run: git submodules --deinit ${{ github.workspace }}/python
+      - run: git submodules --deinit ${{ github.workspace }}/kloak
