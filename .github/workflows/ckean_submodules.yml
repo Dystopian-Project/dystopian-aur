@@ -1,5 +1,7 @@
 name: Reset submodules
 
+on: push
+
 permissions:
   packages: write
   contents: write
