@@ -12,6 +12,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: | 
-          git config --set submodule.python.active False || 
-          git config --unset submodule.python.active && 
-          git config --add submodule.python.active False
+          git config --add submodule.python.active false || 
+          git config --unset submodule.python.active 
