@@ -33,7 +33,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: recursive
+        submodules: false
         ref: main
     - id: config
       uses: ./.github/actions/load-config
