@@ -30,7 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: recursive
+        submodules: true
         ref: main
     - id: config
       uses: ./.github/actions/load-config
@@ -141,7 +141,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        submodules: recursive
+        submodules: true
         ref: main
     - name: Build ${{ matrix.package }}
       uses: ./.github/actions/archlinux
