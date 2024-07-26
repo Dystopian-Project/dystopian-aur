@@ -1,6 +1,3 @@
 [submodule "kloak-git"]
 	path = kloak-git
 	url = https://aur.archlinux.org/kloak-git.git
-[submodule "python"]
-	path = python
-	url =  https://gitlab.archlinux.org/archlinux/packaging/packages/python.git
