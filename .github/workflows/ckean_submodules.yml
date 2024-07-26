@@ -11,5 +11,5 @@ jobs:
   variables:
     runs-on: ubuntu-latest
     steps:
-      - run: git submodules --deinit ${{ github.workspace }}/python
-      - run: git submodules --deinit ${{ github.workspace }}/kloak
+      - run: git submodule deinit ${{ github.workspace }}/python
+      - run: git submodule deinit ${{ github.workspace }}/kloak
