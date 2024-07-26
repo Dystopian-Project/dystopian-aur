@@ -11,5 +11,7 @@ jobs:
   variables:
     runs-on: ubuntu-latest
     steps:
-      - run: git submodule deinit ${{ github.workspace }}/python
-      - run: git submodule deinit ${{ github.workspace }}/kloak
+      - run: | 
+          git config --set submodule.python.active False || 
+          git config --unset submodule.python.active && 
+          git config --add submodule.python.active False
