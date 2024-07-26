@@ -12,6 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: "asd"
-        working-directory: ${{ github.workspace }}/..
+        working-directory: ${{ github.workspace }}/
         run: ls -als && git config --add submodule.python.active false || 
               git config --unset submodule.python.active
