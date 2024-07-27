@@ -63,7 +63,7 @@ jobs:
               echo "::set-output name=${1}::${2}"
             fi
           }
-          if [ -z "${{ secrets.ENCRYPTION_KEY }}" ]; then
+          if [ -z "${{ secrets.GPG_KEY_PASSPHRASE }}" ]; then
             set_output run false
           else
             set_output run true
@@ -71,7 +71,7 @@ jobs:
       - name: Import Keys
         if: ${{ steps.vars.outputs.run == 'true' }}
         run: |
-          openssl aes-256-cbc -d -a -pbkdf2 -in ${{ needs.variables.outputs.enc-gpg }} -pass pass:${{ secrets.ENCRYPTION_KEY }} | gpg --import
+          openssl aes-256-cbc -d -a -pbkdf2 -in ${{ needs.variables.outputs.enc-gpg }} -pass pass:${{ secrets.GPG_KEY_PASSPHRASE }} | gpg --import
           if [ -f "${{ needs.variables.outputs.pub-gpg }}" ]; then
             cat ${{ needs.variables.outputs.pub-gpg }} | gpg --import
           fi
@@ -108,7 +108,7 @@ jobs:
         if: ${{ steps.check.outputs.update == 'true' }}
         run: |
           rm ${{ needs.variables.outputs.enc-gpg }} ${{ needs.variables.outputs.pub-gpg }}
-          gpg --armor --export-secret-key ${{ steps.check.outputs.keyId }} | openssl aes-256-cbc -a -salt -pbkdf2 -out ${{ needs.variables.outputs.enc-gpg }} -pass pass:${{ secrets.ENCRYPTION_KEY }}
+          gpg --armor --export-secret-key ${{ steps.check.outputs.keyId }} | openssl aes-256-cbc -a -salt -pbkdf2 -out ${{ needs.variables.outputs.enc-gpg }} -pass pass:${{ secrets.GPG_KEY_PASSPHRASE }}
           gpg --batch --output ${{ needs.variables.outputs.pub-gpg }} --armor --export ${{ steps.check.outputs.keyId }}
       - name: Push Changes
         if: ${{ steps.check.outputs.update == 'true' }}
@@ -147,7 +147,7 @@ jobs:
       uses: ./.github/actions/archlinux
       env:
         PACKAGER: ${{ needs.variables.outputs.packager }}
-        SECRET: ${{ secrets.ENCRYPTION_KEY }}
+        SECRET: ${{ secrets.GPG_KEY_PASSPHRASE }}
         GPGKEY: ${{ needs.variables.outputs.enc-gpg }}
       with:
         dir: ${{ matrix.package }}
@@ -185,7 +185,7 @@ jobs:
       uses: ./.github/actions/archlinux
       env:
         PACKAGER: ${{ needs.variables.outputs.packager }}
-        SECRET: ${{ secrets.ENCRYPTION_KEY }}
+        SECRET: ${{ secrets.GPG_KEY_PASSPHRASE }}
         GPGKEY: ${{ needs.variables.outputs.enc-gpg }}
       with:
         run: repo-add -s -q --nocolor -n -R ${{ needs.variables.outputs.repo-name }}.db.tar.gz *.pkg.tar.zst

@@ -72,7 +72,7 @@ jobs:
       uses: ./.github/actions/archlinux
       env:
         PACKAGER: ${{ needs.variables.outputs.packager }}
-        SECRET: ${{ secrets.ENCRYPTION_KEY }}
+        SECRET: ${{ secrets.GPG_KEY_PASSPHRASE }}
         GPGKEY: ${{ needs.variables.outputs.enc-gpg }}
       with:
         dir: ${{ matrix.package }}
@@ -127,7 +127,7 @@ jobs:
       uses: ./.github/actions/archlinux
       env:
         PACKAGER: ${{ needs.variables.outputs.packager }}
-        SECRET: ${{ secrets.ENCRYPTION_KEY }}
+        SECRET: ${{ secrets.GPG_KEY_PASSPHRASE }}
         GPGKEY: ${{ needs.variables.outputs.enc-gpg }}
       with:
         run: repo-add -s -q --nocolor -n -R ${{ needs.variables.outputs.repo-name }}.db.tar.gz *.pkg.tar.zst

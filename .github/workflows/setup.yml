@@ -11,6 +11,8 @@ on:
 permissions:
   packages: write
   contents: write
+  deployments: write
+
 
 concurrency:
   group: "release"
@@ -26,6 +28,7 @@ jobs:
       gpg-key: ${{ steps.get-key.outputs.key }}
       has-token: ${{ steps.get-key.outputs.has_token }}
       generate: ${{ steps.get-key.outputs.generate }}
+
     steps:
     - uses: actions/checkout@v4
       with:
@@ -43,16 +46,16 @@ jobs:
             echo "::set-output name=${1}::${2}"
           fi
         }
-        if [ -z "${{ secrets.REPO_TOKEN }}"]; then
+        if [ -z "${{ github.token }}"]; then
           set_output has_token false
         else
           set_output has_token true
         fi
-        if [ -z "${{ secrets.ENCRYPTION_KEY }}" ]; then
+        if [ -z "${{ secrets.GPG_KEY_PASSPHRASE }}" ]; then
           set_output key $(head /dev/urandom | tr -dc A-Za-z0-9 | head -c16)
           set_output generate true
         else
-          set_output key ${{ secrets.ENCRYPTION_KEY }}
+          set_output key ${{ secrets.GPG_KEY_PASSPHRASE }}
           if [ ! -f "${{ steps.config.outputs.enc-gpg }}" ]; then
             set_output generate true
           else
@@ -72,7 +75,7 @@ jobs:
     - run: (gh secret list -a ${{ matrix.app }} | grep ENCRYPTION_KEY >/dev/null 2>&1) || gh secret set ENCRYPTION_KEY --app ${{ matrix.app }} --body ${{ needs.variables.outputs.gpg-key }}
       name: Set ${{ matrix.app }} Secret ENCRYPTION_KEY
       env:
-        github_token: ${{ secrets.REPO_TOKEN }}
+        github_token: ${{ github.token }}
     - run: gh secret delete REPO_TOKEN
       name: Remove REPO_TOKEN
       env:
