@@ -78,7 +78,7 @@ jobs:
     - name: Upload new package ${{ matrix.package }}
       uses: svenstaro/upload-release-action@v2
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ github.token }}
         tag: repository
         file: ${{ matrix.package }}/*.pkg.*
         file_glob: true
@@ -98,7 +98,7 @@ jobs:
     - name: Delete old package ${{ matrix.package }}
       uses: mknejp/delete-release-assets@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ github.token }}
         tag: repository
         assets: ${{ matrix.package }}*
 
@@ -120,7 +120,7 @@ jobs:
         fileName: '*.pkg.*'
         tarBall: false
         zipBall: false
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ github.token }}
     - name: Build Repo
       uses: ./.github/actions/archlinux
       env:
@@ -132,7 +132,7 @@ jobs:
     - name: Upload new repo
       uses: svenstaro/upload-release-action@v2
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        repo_token: ${{ github.token }}
         tag: repository
         file: ${{ needs.variables.outputs.repo-name }}.db*
         file_glob: true
