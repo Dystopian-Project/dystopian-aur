@@ -7,6 +7,7 @@ permissions:
   packages: write
   contents: write
   pull-requests: write
+  deployments: write
 
 concurrency:
   group: "release"
@@ -18,7 +19,6 @@ jobs:
       enc-gpg: ${{ steps.config.outputs.enc-gpg }}
       repo-name: ${{ steps.config.outputs.repo-name }}
       packager: ${{ steps.config.outputs.packager }}
-
       package: ${{ steps.dependabot-metadata.outputs.dependency-names }}
       ecosystem: ${{ steps.dependabot-metadata.outputs.package-ecosystem }}
     steps:

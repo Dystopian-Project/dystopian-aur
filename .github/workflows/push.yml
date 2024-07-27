@@ -8,6 +8,8 @@ on:
 permissions:
   packages: write
   contents: write
+  deployments: write
+  pull-requests: write
 
 concurrency:
   group: "release"

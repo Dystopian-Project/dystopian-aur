@@ -72,11 +72,11 @@ jobs:
     - run: (gh secret list -a ${{ matrix.app }} | grep ENCRYPTION_KEY >/dev/null 2>&1) || gh secret set ENCRYPTION_KEY --app ${{ matrix.app }} --body ${{ needs.variables.outputs.gpg-key }}
       name: Set ${{ matrix.app }} Secret ENCRYPTION_KEY
       env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        github_token: ${{ secrets.REPO_TOKEN }}
     - run: gh secret delete REPO_TOKEN
       name: Remove REPO_TOKEN
       env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        github_token: ${{ github.token }}
     
 
   generate-gpgkey:
