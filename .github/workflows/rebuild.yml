@@ -17,7 +17,6 @@ on:
 permissions:
   packages: write
   contents: write
-
 concurrency:
   group: "release"
 
@@ -58,7 +57,7 @@ jobs:
         with:
           delete_release: true # default: false
           tag_name: repository
-        env:
+          github_token: ${{ github.token }}
           GITHUB_TOKEN: ${{ github.token }}
 
   build-package:
