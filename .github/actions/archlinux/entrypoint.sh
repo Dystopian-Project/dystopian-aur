@@ -8,7 +8,7 @@ od=$(pwd)
 chown -R build: .
 
 if [ ! -z "${SECRET}" ]; then
-openssl aes-256-cbc -d -a -pbkdf2 -in ${GPGKEY} -pass pass:${SECRET} | sudo -u build gpg --import
+openssl aes-256-cbc -d -a -pbkdf2 -in ${GPGKEY} -pass "pass:${SECRET}" | sudo -u build gpg --import
 unset GPGKEY
 unset SECRET
 fi

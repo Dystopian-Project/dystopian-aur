@@ -1,7 +1,7 @@
 {
     "enc_gpg": "key.gpg.enc",
     "pub_gpg": "dystopian-keyring/public.gpg",
-    "name": "Dystopian",
+    "name": "Dystopian AUR",
     "email": "dcxdevelopment@protonmail.com",
     "repo_name": "dystopian-aur"
 }
