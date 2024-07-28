@@ -18,4 +18,3 @@ runs:
   args:
     - ${{ inputs.dir }}
     - ${{ inputs.run }}
-    - ${{ inputs.github_token }}

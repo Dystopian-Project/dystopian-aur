@@ -127,4 +127,3 @@ jobs:
         file: ${{ needs.variables.outputs.repo-name }}.db*
         file_glob: true
         overwrite: true
-        token: ${{ github.token }}
