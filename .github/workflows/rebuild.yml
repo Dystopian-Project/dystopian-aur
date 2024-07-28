@@ -118,7 +118,6 @@ jobs:
         SECRET: ${{ secrets.GPG_KEY_PASSPHRASE }}
         GPGKEY: ${{ needs.variables.outputs.enc-gpg }}
       with:
-        github_token: ${{ github.token }}
         run: repo-add -s -q --nocolor -n -R ${{ needs.variables.outputs.repo-name }}.db.tar.gz *.pkg.tar.zst
     - name: Upload new repo
       uses: svenstaro/upload-release-action@v2
