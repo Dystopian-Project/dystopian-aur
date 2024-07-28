@@ -58,8 +58,7 @@ jobs:
         with:
           delete_release: true # default: false
           tag_name: repository
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+          github_token: ${{ github.token }}
 
   build-package:
     runs-on: ubuntu-latest
