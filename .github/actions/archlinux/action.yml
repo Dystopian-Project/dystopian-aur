@@ -8,7 +8,10 @@ inputs:
   run:
     description: Script to run
     required: true
-
+  github_token:
+    description: Token for repo access
+    required: true
+    default: ${{ github.token }}
 runs:
   using: docker
   image: Dockerfile
