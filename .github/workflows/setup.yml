@@ -46,7 +46,7 @@ jobs:
             echo "::set-output name=${1}::${2}"
           fi
         }
-        if [ -z "${{ github.token }}"]; then
+        if [ -z "${{ github.token }}" ]; then
           set_output has_token false
         else
           set_output has_token true
