@@ -110,7 +110,7 @@ jobs:
         fileName: '*.pkg.*'
         tarBall: false
         zipBall: false
-        github_token: ${{ github.token }}
+        token: ${{ github.token }}
     - name: Build Repo
       uses: ./.github/actions/archlinux
       env:
