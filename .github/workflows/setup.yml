@@ -72,8 +72,8 @@ jobs:
         app: [actions,dependabot]
     steps:
     - uses: actions/checkout@v4
-    - run: (gh secret list -a ${{ matrix.app }} | grep ENCRYPTION_KEY >/dev/null 2>&1) || gh secret set ENCRYPTION_KEY --app ${{ matrix.app }} --body ${{ needs.variables.outputs.gpg-key }}
-      name: Set ${{ matrix.app }} Secret ENCRYPTION_KEY
+    - run: (gh secret list -a ${{ matrix.app }} | grep GPG_KEY_PASSPHRASE >/dev/null 2>&1) || gh secret set GPG_KEY_PASSPHRASE --app ${{ matrix.app }} --body ${{ needs.variables.outputs.gpg-key }}
+      name: Set ${{ matrix.app }} Secret GPG_KEY_PASSPHRASE
       env:
         github_token: ${{ github.token }}
     - run: gh secret delete REPO_TOKEN
