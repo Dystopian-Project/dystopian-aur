@@ -3,5 +3,6 @@
     "pub_gpg": "dystopian-keyring/public.gpg",
     "name": "Dystopian AUR",
     "email": "dcxdevelopment@protonmail.com",
-    "repo_name": "dystopian-aur"
+    "repo_name": "dystopian-aur",
+    "packager": "DCx7C5"
 }
