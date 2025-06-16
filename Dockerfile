@@ -31,7 +31,7 @@ RUN pacman -Syuq --noconfirm  --noprogressbar --ignore linux --ignore linux-firm
     git \
     && rm -rf /var/lib/pacman/sync/*
 
-COPY --chmod=650 entrypoint.sh /entrypoint.sh
+COPY --chmod=750 entrypoint.sh /entrypoint.sh
 
 RUN dbus-uuidgen --ensure=/etc/machine-id \
     && groupadd $USER \
